@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demotuwei.demotuwei.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.demotuwei.demotuwei.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="age" property="age"/>
+        <result column="phone" property="phone"/>
+        <result column="sex" property="sex" typeHandler="com.demotuwei.demotuwei.config.EnumHandler"/>
+        <result column="date" property="date"/>
+        <result column="gay" property="gay" typeHandler="com.demotuwei.demotuwei.config.EnumHandler"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, age, sex, phone, username, gay, `date`
+    </sql>
+    <select id="select" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+    </select>
+
+    <insert id="insert"  parameterType="com.demotuwei.demotuwei.entity.User">
+        insert into t_user (id, age, phone, username, sex, gay, date)
+        values (#{id}, #{age}, #{phone},
+                #{username},
+                #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+                #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+                #{date}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.demotuwei.demotuwei.entity.User">
+        update t_user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+            </if>
+            <if test="gay != null">
+                gay = #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
