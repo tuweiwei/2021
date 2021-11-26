@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.List;
 
-// 角色控制器
 @Controller
 @RequestMapping("/user")
 public class UserController {

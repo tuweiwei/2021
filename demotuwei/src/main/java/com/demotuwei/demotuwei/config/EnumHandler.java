@@ -27,7 +27,6 @@ public class EnumHandler<E extends BaseEnumOfKeyValue> extends BaseTypeHandler<E
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, E parameter,
                                     JdbcType jdbcType) throws SQLException {
-        System.out.println("worieiieiieie");
         ps.setObject(i, parameter.getCode(), jdbcType.TYPE_CODE);
     }
 

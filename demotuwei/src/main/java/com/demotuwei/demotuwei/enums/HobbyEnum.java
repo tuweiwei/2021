@@ -6,16 +6,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-public enum SexEnum implements BaseEnumOfKeyValue<SexEnum, String> {
-    GAY("JJ", "男性"),
-    NO_GAY("PP", "女性");
+public enum HobbyEnum implements BaseEnumOfKeyValue<HobbyEnum, String> {
+    MUSIC("H1", "音乐"),
+    BASKETBALL("H2", "篮球"),
+    SPORT("H3", "运动"),
+    CLIME("H4", "爬山");
 
     private String code;
     private String value;
 
-    SexEnum(String code, String value) {
+    HobbyEnum(String code, String value) {
         this.code = code;
         this.value = value;
     }
@@ -33,33 +34,34 @@ public enum SexEnum implements BaseEnumOfKeyValue<SexEnum, String> {
         return value;
     }
 
+
     public void setValue(String value) {
         this.value = value;
     }
 
-    private static Map<String, SexEnum> map = new HashMap<>(SexEnum.values().length);
+    private static Map<String, HobbyEnum> map = new HashMap<>(HobbyEnum.values().length);
     static {
-        for (SexEnum sexEnum : SexEnum.values()) {
+        for (HobbyEnum sexEnum : HobbyEnum.values()) {
             map.put(sexEnum.getCode(), sexEnum);
         }
     }
 
     @JsonCreator
-    public static SexEnum getEnum(String code) {
+    public static HobbyEnum getEnum(String code) {
         return map.get(code);
     }
 
-    public static SexEnum getByCode(String code) {
-        for (SexEnum p : values()) {
-            if (Objects.equals(p.getCode(), code)) {
+    public static HobbyEnum getByCode(String code) {
+        for (HobbyEnum p : values()) {
+            if (p.getCode().equals(code)) {
                 return p;
             }
         }
         return null;
     }
 
-    public static SexEnum getByValue(String value) {
-        for (SexEnum p : values()) {
+    public static HobbyEnum getByValue(String value) {
+        for (HobbyEnum p : values()) {
             if (p.getValue().equalsIgnoreCase(value)) {
                 return p;
             }

@@ -9,10 +9,11 @@
         <result column="sex" property="sex" typeHandler="com.demotuwei.demotuwei.config.EnumHandler"/>
         <result column="date" property="date"/>
         <result column="gay" property="gay" typeHandler="com.demotuwei.demotuwei.config.EnumHandler"/>
+        <result column="hobby" property="hobby" typeHandler="com.demotuwei.demotuwei.config.StringHandler"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, age, sex, phone, username, gay, `date`
+        id, age, sex, phone, username, gay, `date`, hobby
     </sql>
     <select id="select" resultMap="BaseResultMap">
         select
@@ -21,12 +22,13 @@
     </select>
 
     <insert id="insert"  parameterType="com.demotuwei.demotuwei.entity.User">
-        insert into t_user (id, age, phone, username, sex, gay, date)
+        insert into t_user (id, age, phone, username, sex, gay, date, hobby)
         values (#{id}, #{age}, #{phone},
                 #{username},
                 #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
                 #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
-                #{date}
+                #{date},
+                #{hobby, typeHandler=com.demotuwei.demotuwei.config.StringHandler}
                )
     </insert>
 
@@ -41,6 +43,9 @@
             </if>
             <if test="gay != null">
                 gay = #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+            </if>
+            <if test="hobby != null">
+                hobby = #{hobby, typeHandler=com.demotuwei.demotuwei.config.StringHandler},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}

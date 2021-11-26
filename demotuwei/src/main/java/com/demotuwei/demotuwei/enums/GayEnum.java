@@ -57,7 +57,7 @@ public enum GayEnum implements BaseEnumOfKeyValue<GayEnum, Integer> {
 
     public static GayEnum getByCode(Integer code) {
         for (GayEnum p : values()) {
-            if (p.getCode() == code) {
+            if (p.getCode().equals(code)) {
                 return p;
             }
         }
