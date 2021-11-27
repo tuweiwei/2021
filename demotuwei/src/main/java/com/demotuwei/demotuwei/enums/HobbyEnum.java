@@ -21,7 +21,6 @@ public enum HobbyEnum implements BaseEnumOfKeyValue<HobbyEnum, String> {
         this.value = value;
     }
 
-    @JsonValue
     public String getCode() {
         return code;
     }
@@ -46,7 +45,6 @@ public enum HobbyEnum implements BaseEnumOfKeyValue<HobbyEnum, String> {
         }
     }
 
-    @JsonCreator
     public static HobbyEnum getEnum(String code) {
         return map.get(code);
     }
@@ -68,6 +66,5 @@ public enum HobbyEnum implements BaseEnumOfKeyValue<HobbyEnum, String> {
         }
         return null;
     }
-
 
 }

@@ -13,4 +13,5 @@ public interface UserMapper {
     List<User> select();
     void insert(User user);
     void update(User user);
+    void delete(List<String> ids);
 }

@@ -52,4 +52,8 @@ public class UserService {
         userMapper.update(user);
 
     }
+
+    public void delete(List<String> ids) {
+        userMapper.delete(ids);
+    }
 }

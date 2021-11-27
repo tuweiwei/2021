@@ -1,5 +1,6 @@
 package com.demotuwei.demotuwei.controller;
 
+import com.demotuwei.demotuwei.dto.DeleteDto;
 import com.demotuwei.demotuwei.dto.UserDto;
 import com.demotuwei.demotuwei.service.UserService;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -39,6 +40,13 @@ public class UserController {
     @ResponseBody
     public Integer update(@RequestBody UserDto role) {
         userService.update(role);
+        return 1;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public Integer update(@RequestBody DeleteDto ids) {
+        userService.delete(ids.getIds());
         return 1;
     }
 

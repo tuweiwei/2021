@@ -3,29 +3,24 @@ package com.demotuwei.demotuwei.enums;
 import com.demotuwei.demotuwei.config.BaseEnumOfKeyValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.ser.Serializers;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public enum GayEnum implements BaseEnumOfKeyValue<GayEnum, Integer> {
-    MALE(1, "弯弯"),
-    FEMAL(2, "直的");
+public enum FeeEnum implements BaseEnumOfKeyValue<FeeEnum, Integer> {
+    GOU(11, "狗收费"),
+    ZHU(22, "猪收费"),
+    MAO(33, "猫收费"),
+    NIU(44, "牛收费");
 
     private Integer code;
     private String value;
 
-    GayEnum(Integer code, String value) {
+    FeeEnum(Integer code, String value) {
         this.code = code;
         this.value = value;
     }
 
-    @JsonCreator
-    public static GayEnum getEnum(Integer code) {
-        return map.get(code);
-    }
-
-    @JsonValue
     public Integer getCode() {
         return code;
     }
@@ -42,20 +37,19 @@ public enum GayEnum implements BaseEnumOfKeyValue<GayEnum, Integer> {
         this.value = value;
     }
 
-    private static Map<Integer, GayEnum> map = new HashMap<>(GayEnum.values().length);
+    private static Map<Integer, FeeEnum> map = new HashMap<>(FeeEnum.values().length);
     static {
-        for (GayEnum sexEnum : GayEnum.values()) {
+        for (FeeEnum sexEnum : FeeEnum.values()) {
             map.put(sexEnum.getCode(), sexEnum);
         }
     }
 
+    public static FeeEnum getEnum(String code) {
+        return map.get(code);
+    }
 
-//    public static GayEnum fromValue(String code) {
-//
-//    }
-
-    public static GayEnum getByCode(Integer code) {
-        for (GayEnum p : values()) {
+    public static FeeEnum getByCode(Integer code) {
+        for (FeeEnum p : values()) {
             if (p.getCode().equals(code)) {
                 return p;
             }
@@ -63,14 +57,12 @@ public enum GayEnum implements BaseEnumOfKeyValue<GayEnum, Integer> {
         return null;
     }
 
-    public static GayEnum getByValue(String value) {
-        for (GayEnum p : values()) {
+    public static FeeEnum getByValue(String value) {
+        for (FeeEnum p : values()) {
             if (p.getValue().equalsIgnoreCase(value)) {
                 return p;
             }
         }
         return null;
     }
-
-
 }

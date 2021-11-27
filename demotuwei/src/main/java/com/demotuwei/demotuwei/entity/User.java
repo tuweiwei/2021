@@ -1,5 +1,6 @@
 package com.demotuwei.demotuwei.entity;
 
+import com.demotuwei.demotuwei.enums.FeeEnum;
 import com.demotuwei.demotuwei.enums.GayEnum;
 import com.demotuwei.demotuwei.enums.HobbyEnum;
 import com.demotuwei.demotuwei.enums.SexEnum;
@@ -21,6 +22,8 @@ public class User {
     private String phone;
     private Date date;
     private GayEnum gay;
+
     private List<HobbyEnum> hobby;
+    private List<FeeEnum> fee;
 
 }

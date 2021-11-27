@@ -6,14 +6,15 @@
         <result column="username" property="username"/>
         <result column="age" property="age"/>
         <result column="phone" property="phone"/>
-        <result column="sex" property="sex" typeHandler="com.demotuwei.demotuwei.config.EnumHandler"/>
+        <result column="sex" property="sex" typeHandler="com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler"/>
         <result column="date" property="date"/>
-        <result column="gay" property="gay" typeHandler="com.demotuwei.demotuwei.config.EnumHandler"/>
-        <result column="hobby" property="hobby" typeHandler="com.demotuwei.demotuwei.config.StringHandler"/>
+        <result column="gay" property="gay" typeHandler="com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler"/>
+        <result column="hobby" property="hobby" typeHandler="com.demotuwei.demotuwei.config.Varchar2EnumTypeHandler"/>
+        <result column="fee" property="fee" typeHandler="com.demotuwei.demotuwei.config.Varchar2Enum2TypeHandler"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, age, sex, phone, username, gay, `date`, hobby
+        id, age, sex, phone, username, gay, `date`, hobby, fee
     </sql>
     <select id="select" resultMap="BaseResultMap">
         select
@@ -22,13 +23,14 @@
     </select>
 
     <insert id="insert"  parameterType="com.demotuwei.demotuwei.entity.User">
-        insert into t_user (id, age, phone, username, sex, gay, date, hobby)
+        insert into t_user (id, age, phone, username, sex, gay, date, hobby, fee)
         values (#{id}, #{age}, #{phone},
                 #{username},
-                #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
-                #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+                #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
+                #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
                 #{date},
-                #{hobby, typeHandler=com.demotuwei.demotuwei.config.StringHandler}
+                #{hobby, typeHandler=com.demotuwei.demotuwei.config.Varchar2EnumTypeHandler},
+                #{fee, typeHandler=com.demotuwei.demotuwei.config.Varchar2Enum2TypeHandler}
                )
     </insert>
 
@@ -39,15 +41,26 @@
                 username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="sex != null">
-                sex = #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+                sex = #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
             </if>
             <if test="gay != null">
-                gay = #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.EnumHandler},
+                gay = #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
             </if>
             <if test="hobby != null">
-                hobby = #{hobby, typeHandler=com.demotuwei.demotuwei.config.StringHandler},
+                hobby = #{hobby, typeHandler=com.demotuwei.demotuwei.config.Varchar2EnumTypeHandler},
+            </if>
+            <if test="fee != null">
+                fee = #{fee, typeHandler=com.demotuwei.demotuwei.config.Varchar2Enum2TypeHandler},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="delete" parameterType="list">
+        delete from t_user where
+        id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+    </select>
 </mapper>

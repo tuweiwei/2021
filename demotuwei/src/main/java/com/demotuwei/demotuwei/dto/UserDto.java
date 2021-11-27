@@ -1,6 +1,8 @@
 package com.demotuwei.demotuwei.dto;
 
-import com.demotuwei.demotuwei.config.Convert;
+import com.demotuwei.demotuwei.config.Filed2Enum;
+import com.demotuwei.demotuwei.config.Enum2String;
+import com.demotuwei.demotuwei.enums.FeeEnum;
 import com.demotuwei.demotuwei.enums.GayEnum;
 import com.demotuwei.demotuwei.enums.HobbyEnum;
 import com.demotuwei.demotuwei.enums.SexEnum;
@@ -12,7 +14,6 @@ import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @ToString
@@ -25,10 +26,12 @@ public class UserDto {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date date;
     private GayEnum gay;
-    @JsonDeserialize(using = Convert.class)
+
+    @JsonDeserialize(using = Filed2Enum.class)
+    @JsonSerialize(using = Enum2String.class)
     private List<HobbyEnum> hobby;
 
-    public String getHobby() {
-        return hobby.stream().map(HobbyEnum::getCode).collect(Collectors.joining(","));
-    }
+    @JsonDeserialize(using = Filed2Enum.class)
+    @JsonSerialize(using = Enum2String.class)
+    private List<FeeEnum> fee;
 }
