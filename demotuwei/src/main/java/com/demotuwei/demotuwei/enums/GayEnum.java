@@ -72,5 +72,4 @@ public enum GayEnum implements BaseEnumOfKeyValue<GayEnum, Integer> {
         return null;
     }
 
-
 }

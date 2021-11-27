@@ -1,5 +1,6 @@
 package com.demotuwei.demotuwei.mapper;
 
+import com.demotuwei.demotuwei.dto.QueryDto;
 import com.demotuwei.demotuwei.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -14,4 +15,6 @@ public interface UserMapper {
     void insert(User user);
     void update(User user);
     void delete(List<String> ids);
+    List<User> selectPage(QueryDto queryDto);
+    Long selectPageCount(QueryDto queryDto);
 }

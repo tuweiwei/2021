@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.ToString;
 import org.apache.ibatis.type.JdbcType;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @ToString
 public class User {
 
-    private Integer id;
+    private BigInteger id;
     private String username;
     private SexEnum sex;
     private Integer age;

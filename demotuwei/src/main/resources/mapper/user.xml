@@ -22,6 +22,24 @@
         from t_user
     </select>
 
+    <select id="selectPage" parameterType="com.demotuwei.demotuwei.dto.QueryDto" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from t_user
+        where 1=1
+        <if test="username != null">
+            and username = #{username}
+        </if>
+        limit #{curPage}, #{pageSize}
+    </select>
+
+    <select id="selectPageCount" parameterType="com.demotuwei.demotuwei.dto.QueryDto" resultType="long">
+        select count(1)
+        from t_user
+        where 1=1
+        <if test="username != null">
+            and username = #{username}
+        </if>
+    </select>
+
     <insert id="insert"  parameterType="com.demotuwei.demotuwei.entity.User">
         insert into t_user (id, age, phone, username, sex, gay, date, hobby, fee)
         values (#{id}, #{age}, #{phone},
@@ -41,10 +59,10 @@
                 username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="sex != null">
-                sex = #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
+                sex = #{sex, jdbcType=VARCHAR, typeHandler=com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
             </if>
             <if test="gay != null">
-                gay = #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
+                gay = #{gay, jdbcType=INTEGER, typeHandler=com.demotuwei.demotuwei.config.Enum2VarcharTypeHandler},
             </if>
             <if test="hobby != null">
                 hobby = #{hobby, typeHandler=com.demotuwei.demotuwei.config.Varchar2EnumTypeHandler},
@@ -63,4 +81,7 @@
             #{item}
         </foreach>
     </select>
+
+
+
 </mapper>

@@ -1,17 +1,20 @@
 package com.demotuwei.demotuwei.service;
 
+import com.demotuwei.demotuwei.dto.QueryDto;
 import com.demotuwei.demotuwei.dto.UserDto;
 import com.demotuwei.demotuwei.entity.User;
 import com.demotuwei.demotuwei.mapper.UserMapper;
+import com.demotuwei.demotuwei.uitl.PageResult;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigInteger;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -39,6 +42,9 @@ public class UserService {
 
     public void save(UserDto userDto) {
 
+        if (Objects.isNull(userDto.getId())) {
+            userDto.setId(new BigInteger(UUID.randomUUID().toString().substring(1, 6).replaceAll("-", "").replaceAll("[A-Za-z]", "")));
+        }
         User user = new User();
         BeanUtils.copyProperties(userDto, user);
 
@@ -55,5 +61,28 @@ public class UserService {
 
     public void delete(List<String> ids) {
         userMapper.delete(ids);
+    }
+
+    public PageResult<List<UserDto>> listPage(QueryDto queryDto) {
+        List<User> users = userMapper.selectPage(queryDto);
+        PageResult<List<UserDto>> objectPageResult = new PageResult<>();
+
+        if (CollectionUtils.isEmpty(users)) {
+            return objectPageResult;
+        }
+
+        List<UserDto> objects = new ArrayList<>();
+        for (User e : users) {
+
+            UserDto userDto = new UserDto();
+            BeanUtils.copyProperties(e, userDto);
+            objects.add(userDto);
+        }
+
+        Long aLong = userMapper.selectPageCount(queryDto);
+        objectPageResult.setData(objects);
+        objectPageResult.setTotal(aLong);
+        return objectPageResult;
+
     }
 }
