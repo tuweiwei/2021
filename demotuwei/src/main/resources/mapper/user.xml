@@ -22,7 +22,7 @@
         from t_user
     </select>
 
-    <select id="selectPage" parameterType="com.demotuwei.demotuwei.dto.QueryDto" resultMap="BaseResultMap">
+    <select id="selectPage" parameterType="com.demotuwei.demotuwei.interfaces.dto.QueryDto" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/> from t_user
         where 1=1
         <if test="username != null">
@@ -31,7 +31,7 @@
         limit #{curPage}, #{pageSize}
     </select>
 
-    <select id="selectPageCount" parameterType="com.demotuwei.demotuwei.dto.QueryDto" resultType="long">
+    <select id="selectPageCount" parameterType="com.demotuwei.demotuwei.interfaces.dto.QueryDto" resultType="long">
         select count(1)
         from t_user
         where 1=1

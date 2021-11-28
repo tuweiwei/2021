@@ -78,6 +78,6 @@ public class Enum2VarcharTypeHandler<E extends BaseEnumOfKeyValue> extends BaseT
                 return e;
             }
         }
-        throw new IllegalArgumentException("未知的枚举类型：" + value + ",请核对" + type.getSimpleName());
+        throw new IllegalArgumentException("未知的枚举类型：" + value + ",请在数据库核对" + type.getSimpleName());
     }
 }

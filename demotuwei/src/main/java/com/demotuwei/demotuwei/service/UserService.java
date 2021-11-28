@@ -1,7 +1,7 @@
 package com.demotuwei.demotuwei.service;
 
-import com.demotuwei.demotuwei.dto.QueryDto;
-import com.demotuwei.demotuwei.dto.UserDto;
+import com.demotuwei.demotuwei.interfaces.dto.QueryDto;
+import com.demotuwei.demotuwei.interfaces.dto.UserDto;
 import com.demotuwei.demotuwei.entity.User;
 import com.demotuwei.demotuwei.mapper.UserMapper;
 import com.demotuwei.demotuwei.uitl.PageResult;

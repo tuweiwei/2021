@@ -1,4 +1,4 @@
-package com.paic.smartdraft.util;
+package com.demotuwei.demotuwei.uitl;
 
 import java.lang.reflect.*;
 import java.util.Collection;

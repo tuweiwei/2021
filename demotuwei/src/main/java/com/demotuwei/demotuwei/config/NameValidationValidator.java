@@ -2,8 +2,11 @@ package com.demotuwei.demotuwei.config;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.regex.Pattern;
 
 public class NameValidationValidator implements ConstraintValidator<NameValid, String> {
+    private static Pattern pattern = Pattern.compile("\\w+\\d+");
+
     @Override
     public void initialize(NameValid constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
@@ -11,11 +14,10 @@ public class NameValidationValidator implements ConstraintValidator<NameValid, S
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
-        if ("steven".equalsIgnoreCase(value)) {
+        if (pattern.matcher(value).matches()) {
             return true;
         }
-        String defaultConstraintMessageTemplate = constraintValidatorContext.getDefaultConstraintMessageTemplate();
-        System.out.println("default message :" + defaultConstraintMessageTemplate);
+        String defaultConstraintMessage = constraintValidatorContext.getDefaultConstraintMessageTemplate();
         //禁用默认提示信息
         //context.disableDefaultConstraintViolation();
         //设置提示语

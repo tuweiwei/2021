@@ -1,6 +1,6 @@
 package com.demotuwei.demotuwei.mapper;
 
-import com.demotuwei.demotuwei.dto.QueryDto;
+import com.demotuwei.demotuwei.interfaces.dto.QueryDto;
 import com.demotuwei.demotuwei.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;

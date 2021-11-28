@@ -1,0 +1,1 @@
+insert into t_user (id, age,sex,phone,gay,hobby,fee,username,`date`) values (1932, 2, 'man','232','1','s','f','tuwei',now());

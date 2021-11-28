@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NameValid {
-    String message() default "不是合法的名字, 需满足规则xxxx";
+    String message() default "用户名需满足规则：同时包含数字和字母";
 
     Class<?>[] groups() default {};
 

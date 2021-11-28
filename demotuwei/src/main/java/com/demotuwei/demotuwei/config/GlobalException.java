@@ -2,8 +2,6 @@ package com.demotuwei.demotuwei.config;
 
 import com.demotuwei.demotuwei.enums.ResultCodeEnum;
 import com.demotuwei.demotuwei.uitl.ResultVo;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

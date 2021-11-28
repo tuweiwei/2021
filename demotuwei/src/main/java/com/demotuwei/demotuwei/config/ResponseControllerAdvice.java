@@ -1,5 +1,6 @@
 package com.demotuwei.demotuwei.config;
 
+import com.demotuwei.demotuwei.annotation.NotResponseBody;
 import com.demotuwei.demotuwei.uitl.ResultVo;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
